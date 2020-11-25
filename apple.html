@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apples</title>
+</head>
+
+<body>
+    <script>
+        let Apple = function () {
+            this.appleWeight = 10
+            this.getEaten = function () {
+                if (this.appleWeight > 0) {
+                    return this.appleWeight--
+                }
+            }
+            this.getWeight = function () {
+                return this.appleWeight
+            }
+        }
+
+        let Human = function (name, gender, weight) {
+            this.name = name
+            this.gender = gender
+            this.weight = weight
+            this.speak = function (message) {
+                console.log(message)
+            }
+            this.checkAppleWeight = function (apple) {
+                console.log(apple.appleWeight)
+            }
+            this.eatApple = function (apple) {
+                if (apple.appleWeight > 0) {
+                    this.weight++
+                    apple.appleWeight--
+                }
+            }
+            this.getName = function (human) {
+                console.log(human.name)
+            }
+            this.getWeight = function (human) {
+                console.log(human.weight)
+            }
+            this.getGender = function (human) {
+                console.log(human.gender)
+            }
+        }
+
+        let appleRed = new Apple()
+        console.log(appleRed.appleWeight)
+
+        let human1 = new Human("Adam", "male", 70)
+        let human1Quote = "Apple looks good!"
+        human1.speak(human1Quote)
+        human1.eatApple(appleRed)
+
+        let human2 = new Human("Eva", "female", 55)
+        let human2Quote = "I think so too!"
+        human2.speak(human2Quote)
+        human2.eatApple(appleRed)
+
+        human2.checkAppleWeight(appleRed)
+        console.log(human2.weight)
+
+        human2.getName(human1)
+    </script>
+</body>
+
+</html>
