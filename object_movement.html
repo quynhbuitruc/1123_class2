@@ -26,30 +26,19 @@
             this.moveRight = function () {
                 this.left += 20;
             }
-            this.moveLeft = function () {
-                    this.left -= 20;
-            }
-            
-            this.touchLeftBorder = function () {
-                if (this.left == 0) {
-                    return true
-                }
-            }
-
-            this.touchRightBorder = funciton () {
-                if ((this.left+this.size) == window.innerWidth) {
-                    return true
-                }
+            this.moveDown = function () {
+                    this.top += 20;
             }
         }
 
         var hero = new Hero('bunny.png', 0, 10, 150);
 
         function start() {
-            if (hero.touchLeftBorder() == true) {
+            if (hero.left < window.innerWidth - hero.size) {
                 hero.moveRight();
-            } else {
-                hero.moveLeft();
+            } 
+            if (hero.top < window.innerHeight - hero.size) {
+                hero.moveDown();
             }
             document.getElementById('game').innerHTML = hero.getHeroElement();
             setTimeout(start, 100)
