@@ -8,8 +8,8 @@
 </head>
 
 <body>
+    <div id="game"></div>
     <script>
-        <div id="game"></div>
         function Hero(image, top, left, size) {
             this.image = image;
             this.top = top;
@@ -25,19 +25,34 @@
 
             this.moveRight = function () {
                 this.left += 20;
-                console.log('ok: ' + this.left);
+            }
+            this.moveLeft = function () {
+                    this.left -= 20;
+            }
+            
+            this.touchLeftBorder = function () {
+                if (this.left == 0) {
+                    return true
+                }
             }
 
+            this.touchRightBorder = funciton () {
+                if ((this.left+this.size) == window.innerWidth) {
+                    return true
+                }
+            }
         }
 
-        var hero = new Hero('bunny.png', 20, 30, 200);
+        var hero = new Hero('bunny.png', 0, 10, 150);
 
         function start() {
-            if (hero.left < window.innerWidth - hero.size) {
+            if (hero.touchLeftBorder() == true) {
                 hero.moveRight();
+            } else {
+                hero.moveLeft();
             }
             document.getElementById('game').innerHTML = hero.getHeroElement();
-            setTimeout(start, 500)
+            setTimeout(start, 100)
         }
 
         start();
